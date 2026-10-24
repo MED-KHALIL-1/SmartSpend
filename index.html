@@ -37,46 +37,46 @@
       <p id="welcomeText">Here's an overview of your finances.</p>
     </section>
 
-    <!-- 3. MONTHLY BUDGET PANEL -->
+    <!-- 3. AVAILABLE BALANCE PANEL + RESET DAY -->
     <section class="monpan" aria-labelledby="budgetTitle">
       <div class="budhead">
         <div class="budget">
-          <h2 class="budtitle" id="budgetTitle">Monthly budget</h2>
-          <p class="budamount" id="budgetAmount">500.000 TND</p>
+          <h2 class="budtitle" id="budgetTitle">Available balance</h2>
+          <p class="budamount" id="balanceAmount">0.000 TND</p>
         </div>
-        <button type="button" class="editbud" id="editBudgetBtn">Edit budget</button>
+
+        <div class="resetday">
+          <div class="resetrow">
+            <label for="resetDay">Reset day</label>
+            <select id="resetDay"></select>
+          </div>
+          <p class="resethint" id="resetHint">Next reset: 1st of next month</p>
+        </div>
       </div>
 
-      <div class="progbar" id="progBar" role="progressbar" aria-label="Share of monthly budget spent"
+      <div class="progbar" id="progBar" role="progressbar" aria-label="Share of income spent"
            aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div class="progfill" id="progFill"></div>
       </div>
 
       <div class="budlab">
-        <span><strong id="spentValue">0.000 TND</strong> spent</span>
-        <span class="budstatus" id="budStatus">0% used</span>
-        <span><strong id="remainingValue">500.000 TND</strong> remaining</span>
+        <span><strong id="spentValue">0.000 TND</strong> spent of <strong id="periodIncome">0.000 TND</strong></span>
+        <span class="budstatus" id="budStatus">No income yet</span>
       </div>
     </section>
 
     <!-- 4. FINANCIAL SUMMARY -->
-    <section class="summary" aria-label="This month's summary">
-      <article class="stcard">
-        <div class="sthead"><span class="stdot stdot-gold" aria-hidden="true"></span>Available balance</div>
-        <p class="stvalue" id="balanceValue">0.000 TND</p>
-        <p class="stdesc">Income minus expenses this month</p>
-      </article>
-
+    <section class="summary" aria-label="Summary for the current period">
       <article class="stcard">
         <div class="sthead"><span class="stdot stdot-green" aria-hidden="true"></span>Total income</div>
         <p class="stvalue stvalue-income" id="incomeValue">0.000 TND</p>
-        <p class="stdesc">Money received this month</p>
+        <p class="stdesc" id="incomeDesc">Money received this month</p>
       </article>
 
       <article class="stcard">
         <div class="sthead"><span class="stdot stdot-red" aria-hidden="true"></span>Total expenses</div>
         <p class="stvalue stvalue-expense" id="expenseValue">0.000 TND</p>
-        <p class="stdesc">Money spent this month</p>
+        <p class="stdesc" id="expenseDesc">Money spent this month</p>
       </article>
     </section>
 
@@ -167,23 +167,6 @@
       <p class="tagline">Manage your money. Make smarter decisions.</p>
     </div>
   </footer>
-
-  <!-- Edit budget dialog -->
-  <dialog class="budgetdialog" id="budgetDialog" aria-labelledby="dialogTitle">
-    <form id="budgetForm" novalidate>
-      <h2 id="dialogTitle">Edit monthly budget</h2>
-      <p class="dialogtext">Set how much you plan to spend each month.</p>
-      <div class="field">
-        <label for="budgetInput">Monthly budget (TND)</label>
-        <input type="number" id="budgetInput" step="0.001" min="0" inputmode="decimal" autocomplete="off">
-      </div>
-      <p class="formmsg error" id="budgetError" role="alert"></p>
-      <div class="dialogactions">
-        <button type="button" class="btn-secondary" id="budgetCancel">Cancel</button>
-        <button type="submit" class="btn-primary btn-inline">Save budget</button>
-      </div>
-    </form>
-  </dialog>
 
   <!-- Toast messages -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
