@@ -181,7 +181,7 @@ button, input, select { font: inherit; color: inherit; }
 
 .budhead {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
@@ -203,22 +203,47 @@ button, input, select { font: inherit; color: inherit; }
   overflow-wrap: anywhere;
 }
 
-.editbud {
-  min-height: 40px;
-  padding: 0 18px;
-  background: transparent;
-  color: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+.resetday {
+  min-width: 210px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
 }
 
-.editbud:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+.resetrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.resetday label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.resetday select {
+  width: auto;
+  min-width: 76px;
+  min-height: 36px;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  font-size: 0.9375rem;
+}
+
+.resetday select option {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.resethint {
+  max-width: 260px;
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  color: var(--muted);
 }
 
 .progbar {
@@ -254,8 +279,6 @@ button, input, select { font: inherit; color: inherit; }
   font-variant-numeric: tabular-nums;
 }
 
-.budlab strong.neg { color: var(--red); }
-
 .budstatus.over {
   color: var(--red);
   font-weight: 600;
@@ -266,7 +289,7 @@ button, input, select { font: inherit; color: inherit; }
    ========================================================== */
 .summary {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 24px;
 }
@@ -460,21 +483,6 @@ select[aria-invalid="true"] { border-color: var(--red); }
 
 .btn-primary:hover { background: var(--text); }
 
-.btn-inline { width: auto; }
-
-.btn-secondary {
-  min-height: 46px;
-  padding: 0 20px;
-  background: var(--white);
-  border: 1px solid var(--field-border);
-  border-radius: var(--radius-sm);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.btn-secondary:hover { border-color: var(--text); }
-
 /* Messages */
 .formmsg {
   margin-top: 12px;
@@ -608,42 +616,6 @@ select[aria-invalid="true"] { border-color: var(--red); }
   font-size: 0.875rem;
   color: var(--muted-ink);
 }
-
-/* ==========================================================
-   EDIT BUDGET DIALOG
-   ========================================================== */
-.budgetdialog {
-  width: min(420px, calc(100% - 32px));
-  padding: 0;
-  background: var(--white);
-  color: var(--text);
-  border: 0;
-  border-radius: 16px;
-}
-
-.budgetdialog::backdrop { background: rgba(23, 26, 32, 0.55); }
-
-.budgetdialog form { padding: 24px; }
-
-.budgetdialog h2 {
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-
-.dialogtext {
-  margin: 2px 0 20px;
-  font-size: 0.875rem;
-  color: var(--muted-ink);
-}
-
-.dialogactions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.budgetdialog .formmsg { margin-top: 0; }
 
 /* ==========================================================
    TOAST
@@ -872,11 +844,6 @@ select[aria-invalid="true"] { border-color: var(--red); }
   .content-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
-@media (max-width: 820px) {
-  .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stcard:first-child { grid-column: 1 / -1; }
-}
-
 @media (max-width: 560px) {
   .container { padding-inline: 16px; }
   .main { padding-block: 24px 40px; }
@@ -885,8 +852,7 @@ select[aria-invalid="true"] { border-color: var(--red); }
 
   .monpan { padding: 22px 18px; }
   .budamount { font-size: 2rem; }
-  .budhead { align-items: stretch; }
-  .editbud { width: 100%; }
+  .resetday { width: 100%; }
 
   .summary { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 
@@ -911,13 +877,10 @@ select[aria-invalid="true"] { border-color: var(--red); }
     height: min(560px, calc(100vh - 96px));
   }
 
-  .dialogactions .btn-secondary,
-  .dialogactions .btn-inline { flex: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .progfill,
   .toast,
-  .editbud,
-  .btn-primary { transition: none; }
+    .btn-primary { transition: none; }
 }
